@@ -252,19 +252,34 @@ public class StreamAPI {
     @Test
     public void  TerminalSteam2(){
         List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
-
+//        T identity ：起始值
+//        BinaryOperator<T> extends BiFunction<T,T,T> ： 传过去TT,返回T
+//        首先使用x=0,y=1，x+y=1 ；x=1,y=2 x+y=3 ....反复的按照这种方式计算
+//        因为有起始值，所以不会为空
         Integer sum = list.stream()
                 .reduce(0, (x, y) -> x + y);
 
         System.out.println(sum);
 
         System.out.println("----------------------------------------");
-
+//       可能没有起始值，所以返回的是一个Optional
+//        map-reduce,谷歌使用这种方式进行搜索引擎
+//        先匹配，然后规约收集
         Optional<Double> op = employees.stream()
                 .map(Employee::getSalary)
                 .reduce(Double::sum);
 
         System.out.println(op.get());
+    }
+
+    /**
+     * 流的终止操作(终端操作)
+     * 收集
+     * collect——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
+     */
+    @Test
+    public void  TerminalSteam3(){
+
     }
 
 }
