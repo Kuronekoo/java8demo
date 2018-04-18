@@ -1,4 +1,4 @@
-package run;
+package demo;
 
 import domain.Employee;
 import function.MyFunTR;

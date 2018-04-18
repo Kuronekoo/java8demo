@@ -1,9 +1,10 @@
-package run;
+package demo;
 
 import domain.Employee;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.stream;
@@ -276,10 +277,84 @@ public class StreamAPI {
      * 流的终止操作(终端操作)
      * 收集
      * collect——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
+     *
+     * Collector 接口中方法的实现决定了如何对流执行收集操作(如收
+     * 集到 List、Set、Map)。但是 Collectors 实用类提供了很多静态
+     * 方法，可以方便地创建常见收集器实例
+     *
+     *
      */
     @Test
     public void  TerminalSteam3(){
+        List<String> list = employees.stream()
+                .map(Employee::getName)
+                .collect(Collectors.toList());
+        list.forEach(System.out::println);
+
+        Long count = employees.stream()
+                .collect(Collectors.counting());
+
+        Double avgSal = employees.stream()
+                .collect(Collectors.averagingDouble(Employee::getSalary));
+
+
+        Optional<Employee> maxEmp = employees.stream()
+                .collect(Collectors.maxBy((e1, e2) -> Double.compare(e1.getSalary(), e2.getSalary())));
+        System.out.println(maxEmp.get());
+
+        Optional<Double> minSal = employees.stream()
+                .map(Employee::getSalary)
+                .collect(Collectors.minBy(Double::compare));
+        System.out.println(minSal.get());
 
     }
 
-}
+    /**
+    * 流的终止操作(终端操作)
+     * 收集
+     * 分组和多级分组
+     */
+    @Test
+    public void  TerminalSteam4() {
+        Map<Employee.Status, List<Employee>> collect = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getStatus));
+
+
+        Map<Employee.Status, Map<String, List<Employee>>> collect1 = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getStatus, Collectors.groupingBy((e) -> {
+                    if (e.getAge() >= 60) {
+                        return "老年";
+                    } else if (e.getAge() >= 35) {
+                        return "老年";
+                    } else {
+                        return "青年";
+                    }
+                })));
+        System.out.println(collect1);
+    }
+
+
+    /**
+     * 流的终止操作(终端操作)
+     * 收集
+     * 分区和其他
+     */
+    @Test
+    public void  TerminalSteam5() {
+//        分为true和false两个区
+        Map<Boolean, List<Employee>> collect = employees.stream()
+                .collect(Collectors.partitioningBy(e -> e.getSalary() >= 5000));
+
+        String str = employees.stream()
+                .map(Employee::getName)
+                .collect(Collectors.joining(",", "====", "===="));
+
+        DoubleSummaryStatistics dss = employees.stream()
+                .collect(Collectors.summarizingDouble(Employee::getSalary));
+        dss.getAverage();
+        dss.getCount();
+
+    }
+
+
+    }

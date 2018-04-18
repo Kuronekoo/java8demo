@@ -1,4 +1,4 @@
-package run;
+package demo;
 
 import design.FilterEmployeeByAge;
 import design.MyPredicate;
