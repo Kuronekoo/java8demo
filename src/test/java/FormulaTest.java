@@ -1,9 +1,9 @@
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: shenchao
@@ -15,14 +15,26 @@ public class FormulaTest {
 
     @Test
     public void testFormula(){
-        List<String> names = Arrays.asList("alice","peter","tom","jerry");
-        System.out.println(names);
-        Collections.sort(names,(a,b)->b.compareTo(a));
-        System.out.println(names);
+    //        List<String> names = Arrays.asList("alice","peter","tom","jerry");
+    //        System.out.println(names);
+    //        Collections.sort(names,(a,b)->b.compareTo(a));
+    //        System.out.println(names);
+    //
+    //        Comparator<Integer> com = (x,y)->Integer.compare(x,y);
 
-        Comparator<Integer> com = (x,y)->Integer.compare(x,y);
+            String json = "{\"cardList\":[{\"shopid\":\"123\"},{\"shopid\":\"345\"}]}";
 
+            JSONObject jsonObject = JSON.parseObject(json);
+         System.out.println(jsonObject.toString());
 
+            JSONArray cardlist = JSON.parseArray(jsonObject.getString("cardList"));
+
+        JSONObject jsonObject1 = cardlist.getJSONObject(0);
+        System.out.println(jsonObject1.toString()+"::"+jsonObject1.getString("shopid"));
+
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("cardList",cardlist);
+//        System.out.println(JSON.toJSONString(map));
     }
 
 }

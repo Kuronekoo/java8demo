@@ -127,6 +127,7 @@ public class LearnLambda {
             new Employee("田七",8,6666.6)
     );
 
+
     @Test
     public void lambdaExcise2(){
         Collections.sort(employees,(e1,e2)->{
