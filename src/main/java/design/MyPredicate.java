@@ -6,7 +6,7 @@ package design;
  * @Description:
  */
 @FunctionalInterface
-public interface MyPredicate<T> {
+public interfaces MyPredicate<T> {
 
     boolean test(T t);
 }

@@ -6,6 +6,6 @@ package function;
  * @Description:
  */
 @FunctionalInterface
-public interface MyFunc {
+public interfaces MyFunc {
     Integer getValue(Integer num);
 }

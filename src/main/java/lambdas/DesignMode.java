@@ -1,4 +1,4 @@
-package demo;
+package lambdas;
 
 import design.FilterEmployeeByAge;
 import design.MyPredicate;

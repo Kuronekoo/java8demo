@@ -1,4 +1,4 @@
-package demo;
+package lambdas;
 
 import domain.Employee;
 import function.MyFunTR;

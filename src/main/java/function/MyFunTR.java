@@ -6,6 +6,6 @@ package function;
  * @Description:
  */
 @FunctionalInterface
-public interface MyFunTR<T,R> {
+public interfaces MyFunTR<T,R> {
     public R getValue(T t1,T t2);
 }

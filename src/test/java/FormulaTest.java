@@ -3,8 +3,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
-import java.util.*;
-
 /**
  * @Author: shenchao
  * @Date: created in 21:51 2018/3/22
@@ -28,9 +26,9 @@ public class FormulaTest {
          System.out.println(jsonObject.toString());
 
             JSONArray cardlist = JSON.parseArray(jsonObject.getString("cardList"));
-
+//
         JSONObject jsonObject1 = cardlist.getJSONObject(0);
-        System.out.println(jsonObject1.toString()+"::"+jsonObject1.getString("shopid"));
+        System.out.println(jsonObject1.toString()+"::"+jsonObject1.getString("user"));
 
 //        Map<String,Object> map = new HashMap<>();
 //        map.put("cardList",cardlist);
