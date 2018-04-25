@@ -23,8 +23,13 @@ public class TimeDemo {
         LocalDateTime ldt = LocalDateTime.now(ZoneId.of("Asia/Shanghai"));
         System.out.println(ldt);
 
+        ZonedDateTime shanghai = ldt.atZone(ZoneId.of("Asia/Shanghai"));
+        System.out.println(shanghai);
+
         ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("US/Pacific"));
         System.out.println(zdt);
+
+
     }
 
     @Test
